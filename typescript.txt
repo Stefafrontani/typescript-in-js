@@ -1,0 +1,150 @@
+Typescript
+Is a statically compiled language to write simple JavaScript code
+TypeScript is a superset of JavaScript, a statically compiled language to write simple JavaScript code.
+TypeScript provides:
+- optional static typing
+- classes
+- interface
+It is thought to have better code structuring and object-oriented programming techniques.
+TypeScript compiles to clean, simple JavaScript code which runs on:
+- any browser
+- Node.js
+- any JavaScript engine that supports ECMAScript 3
+
+Why?
+- automatic documentation
+- silly errors in development - less bugs in production
+- If you know javascript, thers no a real learning curve
+- All js code is valid in typescript -> you can incrementally add more of typescript
+
+
+Environment?
+Installation
+- npm install -g typescript
+Run
+typescript con run everywhere
+$ tsc filename[.ts]
+$ node filename[.ts]
+
+A thing to take into account: typescript compiler is meant to compile to es3
+
+[Very sofisticated]
+This compiler behaviour can be modified either sending arguments in the command line or creating a config file `tsconfig.json`
+// Show example of the async compiling "issue" and how it changes whens etting target esnext
+
+Advantages
+    - Documentation showed - linked to interface on how to implement url
+    Example: url class used without / with params
+// Search more here - documentation vs typescript
+
+
+ways of strong typed code:
+Type is defined
+    - IMPLICIT: In the DECLARATION of the variable if it does not have value assigned.
+        Example: implicit_typed
+    - EXPLICIT: In the assignment if it has a type defined
+        Example: explicit_typed
+    - DEFAULT/IMPLICIT: In the assignment if a declaration has no explicit type
+        Example: default_typed_any
+        // This is a way to scape from the typed anarchy
+        // Show disadvatage_default_type_any
+
+Custom types
+Custom types can:
+    - Refer to another primitive
+        Example: Show custom_type screenshot
+    - Refer to specific values (not matter if they are of different types)
+        Example: Show 2-custom_type--specific-values screenshot
+    - Be defined as an interface in case of objects
+        Example: Definition         : Show 3-custom_interface_objects screenshot
+                 Fails              : Show 4-custom_interface_objects--failed screenshot
+                 Non-require-fields : Show 3-custom_interface_objects--non-required screenshot
+
+Functions types
+    - Functions may:
+        Define parameters used inside
+        Return something
+            Example: Show 1-functions--not-typed screenshot
+                In both case, the type can be explicitly typed.
+                Example: Show 1-functions--typed screenshot
+
+        If no return statement:
+            Example: Show 3-functions--typed--void
+
+Arrays
+    - List of elements
+    - Can have same or different types
+    - For same types:
+        Other than object?
+            Show 1-array--same-type-elements screenshot
+        Objects?
+            Show 2-array--only-objects screenshot
+    - For different types
+        Tuples:
+            Specific length that joins values of the same type of item. Called "record" in other prog languages
+            Show 3-array--specific-type-list screenshot
+                They represent a data structure kwnown as "tuple", defined like a fixed-length array with each element of its own type and all of them representing a certain record
+                [ Show 4-tuple--python screenshot ]
+                Show 5-array--specific-type-list--optional screenshot
+
+Like in arrays we define optional elements inside, we can use the same for parameters that might not be used inside functions
+
+
+
+Doubts:
+
+Cosntructor functions as interface?
+
+function lala(person: Person) {
+    console.log(person.name)
+}
+
+function Person(name: string = '1', age : number) {
+    this.name = name;
+    this.age = age;
+}
+
+function Person(obj: Person) {
+    this.name = obj.name;
+    this.age = obj.age;
+}
+
+interface Person {
+    name: string,
+    age : number
+}
+
+const tano = new Person('TANO');
+
+lala(tano);
+
+
+// Doubt with [] type in key
+interface Persona {
+    name: string,
+    [propOpc: string]: number,
+}
+
+const persona : Persona = {
+    name: 'tano',
+    age: '25',
+};
+
+
+// Doubt arrow function - Where does the : returnValueType go?
+
+let sum = (x: number, y: number): number => {
+    return x + y;
+}
+
+sum(10, 20);
+
+let sum = () => any
+
+interface Animal {
+    action: () => any
+}
+
+interface AnimalTwo {
+        function(): any
+};
